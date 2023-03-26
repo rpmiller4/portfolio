@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import './NavMenu.css';
+import useScroll from './hooks/useScroll';
 
-export class NavMenu extends Component {
-  static displayName = NavMenu.name;
+
+class NavMenuClass extends Component {
+  static displayName = NavMenuClass.name;
 
   constructor (props) {
     super(props);
@@ -22,26 +22,47 @@ export class NavMenu extends Component {
   }
 
   render() {
+    const { navbarDark } = this.props;
     return (
+      
       <header>
-        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" container light>
-          <NavbarBrand tag={Link} to="/">my_portfolio</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-            <ul className="navbar-nav flex-grow">
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-              </NavItem>
-            </ul>
-          </Collapse>
-        </Navbar>
+        <nav className={`navbar navbar-expand-lg fixed-top navbarScroll navMenu ${navbarDark}`}>
+          <div className="container">
+              <a className="navbar-brand" href="#">Robert</a>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul className="navbar-nav ms-auto">
+                      <li className="nav-item active">
+                          <a className="nav-link" href="#home" data-offset="70">Home</a>
+                      </li>
+                      <li className="nav-item">
+                          <a className="nav-link" href="#about" data-offset="70">About</a>
+                      </li>
+                      <li className="nav-item">
+                          <a className="nav-link" href="#skills" data-offset="70">Skills</a>
+                      </li>
+                      <li className="nav-item">
+                          <a className="nav-link" href="#portfolio" data-offset="70">Portfolio</a>
+                      </li>
+                      <li className="nav-item">
+                          <a className="nav-link" href="#contact" data-offset="70">Contact</a>
+                      </li>
+                  </ul>
+                  
+              </div>
+          </div>
+        </nav>
       </header>
     );
   }
 }
+
+const NavMenu = () => {
+  const scrollY = useScroll();
+  const navbarDark = scrollY >= 100 ? 'navbarDark' : '';
+  return <NavMenuClass navbarDark={navbarDark} />;
+};
+
+export default NavMenu;
