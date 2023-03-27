@@ -20,11 +20,15 @@ const Layout = ({children}) =>{
 
   useEffect(() => {
     const handleNavLinkClick = (event) => {
+
+      // get the whether the navbar content is showing because during scroll animation, we obscure the target.
+      // using the height of the element will let us change the target position by substracting the height.
+      const heightOfNavbar = document.getElementById("mainNavbar").clientHeight;
+
       event.preventDefault();
       const targetId = event.target.getAttribute('href');
-      const offset = parseInt(event.target.getAttribute('data-offset'), 10);
       const targetElement = document.querySelector(targetId);
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - heightOfNavbar;
 
       window.scrollTo({
         top: targetPosition,

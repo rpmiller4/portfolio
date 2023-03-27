@@ -1,11 +1,29 @@
 /* Provide sufficient contrast against white background */
 .navMenu a {
-  color: #ffffff !important;
+  color: #ffffff;
 }
 
+.navbar-toggler {
+  background-color: #cccccc;
+}
+
+.navbar {
+  --bs-navbar-brand-color: #ffffff;
+  --bs-navbar-brand-hover-color: #cccccc;
+
+}
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+
+.nav-link {
+  --bs-nav-link-color: #ffffff;
+  --bs-nav-link-hover-color: #cccccc;
+  --bs-nav-link-disabled-color: #999999;
+}
+
+
+
 
 code {
   color: #E01A76;
