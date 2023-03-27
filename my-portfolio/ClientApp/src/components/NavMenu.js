@@ -47,6 +47,9 @@ class NavMenuClass extends Component {
                           <a className="nav-link" href="#showcase">Showcase</a>
                       </li>
                       <li className="nav-item">
+                          <Link to="gpt-demo" className="nav-link">GPTDemo</Link>
+                      </li>
+                      <li className="nav-item">
                           <a className="nav-link" href="#contact">Contact</a>
                       </li>
                   </ul>

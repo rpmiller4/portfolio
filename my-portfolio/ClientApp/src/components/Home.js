@@ -4,6 +4,7 @@ import { Skillset } from './Skillset';
 import Contact from './Contact';
 import Hero from './Hero';
 import Showcase from './Showcase';
+import Footer from './Footer';
 
 export class Home extends Component {
   static displayName = Home.name;
@@ -16,6 +17,7 @@ export class Home extends Component {
       <Skillset/>
       <Showcase/>
       <Contact/>
+      <Footer/>
     </>
     );
   }

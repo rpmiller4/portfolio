@@ -10,7 +10,6 @@ class LayoutClass extends Component {
       <div>
         <NavMenu />
         {this.props.children}
-        <Footer />
       </div>
     );
   }
@@ -20,6 +19,11 @@ const Layout = ({children}) =>{
 
   useEffect(() => {
     const handleNavLinkClick = (event) => {
+
+    // Ignore internal routes handled by react-router-dom
+      if (targetId.startsWith("/")) {
+        return;
+      }
 
       // get the whether the navbar content is showing because during scroll animation, we obscure the target.
       // using the height of the element will let us change the target position by substracting the height.
