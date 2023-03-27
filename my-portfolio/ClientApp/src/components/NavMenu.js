@@ -41,7 +41,7 @@ class NavMenuClass extends Component {
                           <a className="nav-link" href="#about" data-offset="70">About</a>
                       </li>
                       <li className="nav-item">
-                          <a className="nav-link" href="#skills" data-offset="70">Skills</a>
+                          <a className="nav-link" href="#skillset" data-offset="70">Skillset</a>
                       </li>
                       <li className="nav-item">
                           <a className="nav-link" href="#portfolio" data-offset="70">Portfolio</a>

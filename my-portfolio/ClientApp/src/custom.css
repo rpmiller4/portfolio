@@ -41,7 +41,8 @@ code {
 }
 /* about section image css */
 .imageAboutPage {
-  width: 100%;
+  width: 25%;
+  float: left;
 }
 
 /* services section css */
@@ -69,10 +70,15 @@ code {
 }
 
 /* spacing on all sections */
-#about, #services, #portfolio, #contact {
+#about, #services, #portfolio, #contact, #footer, #skillset{
   margin-top: 4rem;
   padding-top: 4rem;
 }
 #contact {
   padding-bottom: 4rem;
+}
+
+#footer {
+  background-color: #000000;
+  color: #ffffff;
 }

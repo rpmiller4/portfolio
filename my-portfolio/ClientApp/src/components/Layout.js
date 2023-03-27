@@ -1,5 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import NavMenu from './NavMenu';
+import Footer from './Footer';
 
 class LayoutClass extends Component {
   static displayName = LayoutClass.name;
@@ -9,6 +10,7 @@ class LayoutClass extends Component {
       <div>
         <NavMenu />
         {this.props.children}
+        <Footer />
       </div>
     );
   }
