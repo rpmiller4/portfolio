@@ -88,16 +88,14 @@ code {
 }
 
 /* spacing on all sections */
-#about, #services, #portfolio, #contact, #footer, #skillset{
+#about, #services, #showcase, #contact, #footer, #skillset{
   margin-top: 4rem;
   padding-top: 4rem;
-}
-#contact {
-  padding-bottom: 4rem;
 }
 
 #footer {
   margin-top: 8rem;
+  padding-bottom: 4rem;
   background-color: #000000;
   color: #ffffff;
 }

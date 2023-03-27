@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-export class Skills extends Component {
+export class Skillset extends Component {
 
 
   render() {
