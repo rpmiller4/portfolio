@@ -1,0 +1,103 @@
+/* Provide sufficient contrast against white background */
+.navMenu a {
+  color: #ffffff;
+}
+
+.navbar-toggler {
+  background-color: #cccccc;
+}
+
+.navbar {
+  --bs-navbar-brand-color: #ffffff;
+  --bs-navbar-brand-hover-color: #cccccc;
+
+}
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+.nav-link {
+  --bs-nav-link-color: #ffffff;
+  --bs-nav-link-hover-color: #cccccc;
+  --bs-nav-link-disabled-color: #999999;
+}
+
+
+
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* hero background image */
+.bgimage {
+  height:100vh;
+  background: url('images/heroImage.jpeg');
+  background-size:cover;
+  position:relative;
+}
+/* text css above hero image*/
+.hero_title {
+  font-size: 4.5rem;
+}
+.hero_desc {
+  font-size: 2rem;
+}
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+/* about section image css */
+.imageAboutPage {
+  width: 25%;
+  float: left;
+}
+
+/* services section css */
+.servicesText.card {
+  height: 280px;
+  cursor: pointer;
+}
+.servicesIcon {
+  font-size: 36px;
+  text-align: center;
+  width: 100%;
+}
+.card-title {
+  text-align: center;
+}
+.card:hover .servicesIcon {
+  color: #008000;
+}
+.servicesText:hover {
+  border: 1px solid #008000;
+}
+/* display background color black on navbar scroll */
+.navbarScroll.navbarDark {
+  background-color: black;
+}
+
+/* spacing on all sections */
+#about, #services, #portfolio, #contact, #footer, #skillset{
+  margin-top: 4rem;
+  padding-top: 4rem;
+}
+#contact {
+  padding-bottom: 4rem;
+}
+
+#footer {
+  margin-top: 8rem;
+  background-color: #000000;
+  color: #ffffff;
+}
