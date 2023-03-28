@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import aboutImage from '../images/about.jpeg'
+import aboutImage from '../../images/about.jpeg'
 
 const Contact = () => {
     return (

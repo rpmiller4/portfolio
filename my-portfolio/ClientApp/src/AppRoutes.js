@@ -1,7 +1,8 @@
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
-import { Home } from "./components/Home";
-import GPTDemo from "./components/GPTSummarizer/GPTDemo";
+import { Home } from "./components/Home/Home";
+import GPTDemo from "./components/GPT/GPTDemo";
+
 const AppRoutes = [
   {
     index: true,
@@ -18,7 +19,7 @@ const AppRoutes = [
   {
     path: '/gpt-demo',
     element: <GPTDemo />
-  }
+  },
 ];
 
 export default AppRoutes;

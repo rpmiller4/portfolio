@@ -26,6 +26,27 @@ public class GPTService
         return chatHistory;
     }
 
+    public Task<List<ChatMessage>> GetChatHistoryAsync(string clientId)
+    {
+        if (!_cache.TryGetValue(clientId, out List<ChatMessage> chatHistory))
+        {
+            chatHistory = new List<ChatMessage>();
+            _cache.Set(clientId, chatHistory);
+        }
+
+        return Task.FromResult(chatHistory);
+    }
+
+    public async Task ClearChatHistoryAsync(string clientId)
+    {
+        if (_cache.TryGetValue(clientId, out List<ChatMessage> chatHistory))
+        {
+            _cache.Remove(clientId);
+        }
+
+        _logger.LogInformation("ClearedChatHistoryAsync for " + clientId);
+    }
+
     /// <summary>
     /// Consider adding to the chatHistory instead of replacing it?
     /// </summary>
@@ -105,6 +126,7 @@ public class GPTService
         string responseJson = responseData.ToString();
 
         _logger.LogInformation(responseJson);
+        _logger.LogInformation("clientId is : " + clientId);
 
         var jToken = JToken.Parse(responseJson);
         var content = jToken["choices"][0]["message"]["content"].ToString();
