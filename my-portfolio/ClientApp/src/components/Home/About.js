@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import aboutImage from '../images/profile2.jpeg'
+import aboutImage from '../../images/profile2.jpeg'
 
 export class About extends Component {
-
-
   render() {
     return (
     <section id="about">

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import brainbowImg from '../images/brainbow.jpeg';
+import brainbowImg from '../../images/brainbow.jpeg';
 
 const Showcase = () => {
     return (
@@ -18,7 +18,7 @@ const Showcase = () => {
                                 <ul>
                                     <li>OpenAI GPT API</li>
                                     <li>.NET Core API - Back-End</li>
-                                    <li>React, HTML, CSS - Front End</li>
+                                    <li>React, HTML, CSS - Front-End</li>
                                 </ul>
                             </div>
                         </div>
