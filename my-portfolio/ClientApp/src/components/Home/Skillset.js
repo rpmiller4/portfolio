@@ -11,7 +11,7 @@ export class Skillset extends Component {
                     <div className="col-lg-4 mt-4">
                         <div className="card servicesText">
                             <div className="card-body">
-                                <i className="fas servicesIcon fa-clock"></i>
+                                <i className="fas servicesIcon fa-desktop"></i>
                                 <h4 className="card-title mt-3">Full Stack Development</h4>
                                 <p className="card-text mt-3">I have expertise in building robust, scalable, and user-friendly web applications and back-end services using C#, .NET Core, ASP.NET MVC, and React. Additionally, I leverage storage solutions such as SQL databases and MongoDB.
                                 </p>
@@ -32,7 +32,7 @@ export class Skillset extends Component {
                     <div className="col-lg-4 mt-4">
                         <div className="card servicesText">
                             <div className="card-body">
-                                <i className='far servicesIcon fa-check-circle'></i>
+                                <i className='fas servicesIcon fa-fire'></i>
                                 <h4 className="card-title mt-3">Machine Learning & AI</h4>
                                 <p className="card-text mt-3">I have experience in fine-tuning machine learning models and algorithms for various applications. Specifically, I have fine-tuned GPT-2 locally and ran it on a traditional desktop with a mid-range graphics card. I am also familiar with OpenAI's GPT models and have consumed OpenAI's GPT-3.5 chat and completion services.
                                 </p>
@@ -56,7 +56,7 @@ export class Skillset extends Component {
                     <div className="col-lg-4 mt-4">
                         <div className="card servicesText">
                             <div className="card-body">
-                                <i className='fas servicesIcon fa-shield-alt'></i>
+                                <i className='fas servicesIcon fa-cog'></i>
                                 <h4 className="card-title mt-3">DevOps & Deployment</h4>
                                 <p className="card-text mt-3">I am proficient in using Jenkins, Octopus Deploy, Azure, and Docker to automate, manage, and deploy applications and services.
                                 </p>
@@ -67,7 +67,7 @@ export class Skillset extends Component {
                     <div className="col-lg-4 mt-4">
                         <div className="card servicesText">
                             <div className="card-body">
-                                <i className='fas servicesIcon fa-wrench'></i>
+                                <i className='fas servicesIcon fa-check-square'></i>
                                 <h4 className="card-title mt-3">Test Driven Development</h4>
                                 <p className="card-text mt-3">I have experience with various testing frameworks like NUnit and Moq, which I use to write unit tests and mocks to ensure quality through test-driven development.
                                 </p>
