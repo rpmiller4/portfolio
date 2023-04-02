@@ -72,7 +72,7 @@ const GPTDemo = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('gptservice', {
+      const response = await fetch('api/gptservice', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ const GPTDemo = () => {
 
   async function checkForPreviousHistoryGet(clientId) {
     try {
-      const response = await fetch(`gptservice/GetHistory/${clientId}`, {
+      const response = await fetch(`api/gptservice/GetHistory/${clientId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -137,7 +137,7 @@ const GPTDemo = () => {
 
   async function clearGptHistory() {
     try {
-      const response = await fetch(`gptservice/ClearHistory/${clientId}`, {
+      const response = await fetch(`api/gptservice/ClearHistory/${clientId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'
