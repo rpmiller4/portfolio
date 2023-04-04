@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+  }
+
+  .AppMode {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    margin-bottom: 138px;
+  }
+
+  .chat-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    margin-bottom: 42px;
+  }
+
+  .chat-input textarea {
+    flex: 1;
+    min-height: 50px;
+    max-height: 200px;
+    margin: 0 1rem;
+    padding: 0.5rem;
+    border: none;
+    resize: none;
+    overflow-y: auto;
+  }
+
+  .settings {
+    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+  }
+  
+  .settings.active {
+    display: block;
+    max-height: 200px;
+    transition: max-height 0.5s ease-out;
+  }
+  
+  .settings p {
+    margin: 0;
+  }
+  
+  .settings-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .settings-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* .settings-open {
+    transform: translateY(-100px);
+  } */
+  
+  .close-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+.custom-row{
+    width: 100%;
+}
+
+.summarize {
+    background-color: #f0f8ff;
+}
+    
+.text-extract {
+background-color: #f5f5dc;
+}
+
+.AppMode{
+    transition: background-color 0.3s ease;
+}
