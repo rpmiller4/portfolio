@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<GPTService>();
+builder.Services.AddSingleton<GPTService4>();
 builder.Services.AddSingleton<GPTSummarizer>();
 
 builder.Logging.ClearProviders();
