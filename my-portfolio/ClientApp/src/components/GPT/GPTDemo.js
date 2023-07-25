@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/paraiso-light.css'; 
+
 
 import './GPTDemo.css';
 
@@ -15,6 +18,21 @@ const GPTDemo = () => {
   const [clientId, setClientId] = useState();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isMessagesCleared, setIsMessagesCleared] = useState(false);
+  const messageRefs = useRef([]);
+
+  useEffect(() => {
+    messageRefs.current = messageRefs.current.slice(0, messages.length);
+    messages.forEach((message, index) => {
+      if (!messageRefs.current[index]) {
+        messageRefs.current[index] = React.createRef();
+      }
+    });
+    messageRefs.current.forEach(ref => {
+      if (ref.current) {
+        hljs.highlightBlock(ref.current);
+      }
+    });
+  }, [messages]);
 
   useEffect(() => {
     if (messages === undefined) {
@@ -56,6 +74,8 @@ const GPTDemo = () => {
 
   }, [isFirstLoad]);
 
+
+
   const textAreaRef = useRef(null);
 
   const handleModeChange = (mode) => {
@@ -93,7 +113,7 @@ const GPTDemo = () => {
 
       setMessages((prevMessages) => [...prevMessages,
       { speaker: 'You', text: userInput },
-      { speaker: 'Gpt', text: data.gptResponse }
+      { speaker: 'Gpt', text: parseCode(data.gptResponse) }
       ]);
 
       setTextAreaValue(""); // reset
@@ -121,8 +141,10 @@ const GPTDemo = () => {
       }
 
       const data = await response.json();
+
+
       console.log(data.gptHistory);
-      setMessages(data.gptHistory.filter(x => x.role != "system").map((x) => ({ speaker: x.role == "user" ? 'You' : 'Gpt', text: x.content })));
+      setMessages(data.gptHistory.filter(x => x.role != "system").map((x) => ({ speaker: x.role == "user" ? 'You' : 'Gpt', text: parseCode(x.content) })));
       setTextAreaValue(""); // reset
       textAreaRef.current.style.height = 'auto';
 
@@ -163,6 +185,28 @@ const GPTDemo = () => {
     }
   }
 
+  function parseCode(code) {
+    let regex = /```(\w+)?([\s\S]*?)```/gs;
+
+    let newStr = code.replace(regex, (match, lang, codeSnippet) => {
+      // Remove leading/trailing whitespace
+      codeSnippet = codeSnippet.trim();
+      let highlightedCode;
+
+      if (lang) {
+        // Language was specified
+        highlightedCode = hljs.highlight(lang, codeSnippet).value;
+      } else {
+        // No language specified - try to auto-detect
+        highlightedCode = hljs.highlightAuto(codeSnippet).value;
+      }
+
+      return `<div class="codeblock"><span>${lang || ''}</span><pre><code class="${lang || ''}">${highlightedCode}</code></pre></div>`;
+    });
+
+    return newStr;
+  }
+
 
   const handleSettingsButtonClick = () => {
     setIsSettingsOpen(!isSettingsOpen);
@@ -183,7 +227,10 @@ const GPTDemo = () => {
         {isMessagesCleared && <p>Messages have been cleared.</p>}
         {messages === undefined || messages.length == 0 && <p>Conversation text will appear here</p>}
         <div>{messages !== undefined && messages.map((message, index) => (
-          <p key={index}><strong>{message.speaker}: </strong>{message.text}</p>
+          <p key={index}>
+            <strong>{message.speaker}: </strong>
+            <span dangerouslySetInnerHTML={{ __html: message.text }} />
+          </p>
         ))}</div>
         {isLoading &&
           <div className="spinner-border" role="status">

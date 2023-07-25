@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 
-import './GPTSummarizer.css';
+import '../GPT/GPTDemo.css';
 
 const GPTDemo = () => {
 

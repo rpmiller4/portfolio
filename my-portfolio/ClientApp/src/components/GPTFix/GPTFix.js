@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/paraiso-dark.css'; 
 
 import './GPTFix.css';
 
@@ -15,6 +17,21 @@ const GPTFix = () => {
   const [clientId, setClientId] = useState();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [isMessagesCleared, setIsMessagesCleared] = useState(false);
+  const messageRefs = useRef([]);
+
+  useEffect(() => {
+    messageRefs.current = messageRefs.current.slice(0, messages.length);
+    messages.forEach((message, index) => {
+      if (!messageRefs.current[index]) {
+        messageRefs.current[index] = React.createRef();
+      }
+    });
+    messageRefs.current.forEach(ref => {
+      if (ref.current) {
+        hljs.highlightBlock(ref.current);
+      }
+    });
+  }, [messages]);
 
   useEffect(() => {
     if (messages === undefined) {
@@ -31,7 +48,7 @@ const GPTFix = () => {
       console.log('Component loaded for the first time');
       setIsFirstLoad(false);
 
-      const clientIdFromCookies = Cookies.get('clientId');
+      const clientIdFromCookies = Cookies.get('clientId4');
 
       if (clientIdFromCookies == undefined) {
         const randomId = uuidv4();
@@ -39,13 +56,13 @@ const GPTFix = () => {
         console.log(randomId);
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 15);
-        document.cookie = `clientId=${randomId}; expires=${expirationDate.toUTCString()}; path=/`;
+        document.cookie = `clientId4=${randomId}; expires=${expirationDate.toUTCString()}; path=/`;
       }
       else {
         setClientId(clientIdFromCookies);
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 15);
-        document.cookie = `clientId=${clientIdFromCookies}; expires=${expirationDate.toUTCString()}; path=/`;
+        document.cookie = `clientId4=${clientIdFromCookies}; expires=${expirationDate.toUTCString()}; path=/`;
 
         //checkForPreviousHistory(clientIdFromCookies);
         checkForPreviousHistoryGet(clientIdFromCookies);
@@ -93,7 +110,7 @@ const GPTFix = () => {
 
       setMessages((prevMessages) => [...prevMessages,
       { speaker: 'You', text: userInput },
-      { speaker: 'Gpt', text: data.gptResponse }
+      { speaker: 'Gpt', text: parseCode(data.gptResponse) }
       ]);
 
       setTextAreaValue(""); // reset
@@ -121,8 +138,10 @@ const GPTFix = () => {
       }
 
       const data = await response.json();
+
+
       console.log(data.gptHistory);
-      setMessages(data.gptHistory.filter(x => x.role != "system").map((x) => ({ speaker: x.role == "user" ? 'You' : 'Gpt', text: x.content })));
+      setMessages(data.gptHistory.filter(x => x.role != "system").map((x) => ({ speaker: x.role == "user" ? 'You' : 'Gpt', text: parseCode(x.content) })));
       setTextAreaValue(""); // reset
       textAreaRef.current.style.height = 'auto';
 
@@ -150,9 +169,11 @@ const GPTFix = () => {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
 
-      //onst data = await response.json();
-      //console.log(data.gptHistory);
-      setMessages(undefined);
+      const data = await response.json();
+
+
+      console.log(data.gptHistory);
+      setMessages(data.gptHistory.filter(x => x.role != "system").map((x) => ({ speaker: x.role == "user" ? 'You' : 'Gpt', text: parseCode(x.content) })));
       setTextAreaValue(""); // reset
       textAreaRef.current.style.height = 'auto';
 
@@ -161,6 +182,28 @@ const GPTFix = () => {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  function parseCode(code) {
+    let regex = /```(\w+)?([\s\S]*?)```/gs;
+
+    let newStr = code.replace(regex, (match, lang, codeSnippet) => {
+      // Remove leading/trailing whitespace
+      codeSnippet = codeSnippet.trim();
+      let highlightedCode;
+
+      if (lang) {
+        // Language was specified
+        highlightedCode = hljs.highlight(lang, codeSnippet).value;
+      } else {
+        // No language specified - try to auto-detect
+        highlightedCode = hljs.highlightAuto(codeSnippet).value;
+      }
+
+      return `<div class="codeblock"><span>${lang || ''}</span><pre><code class="${lang || ''}">${highlightedCode}</code></pre></div>`;
+    });
+
+    return newStr;
   }
 
 
@@ -178,12 +221,15 @@ const GPTFix = () => {
   }
 
   return (
-    <div className={`AppMode ${activeMode}`}>
+    <div className={`dark AppMode ${activeMode}`}>
       <div className="chat-box">
         {isMessagesCleared && <p>Messages have been cleared.</p>}
         {messages === undefined || messages.length == 0 && <p>Conversation text will appear here</p>}
         <div>{messages !== undefined && messages.map((message, index) => (
-          <p key={index}><strong>{message.speaker}: </strong>{message.text}</p>
+          <p key={index}>
+            <strong>{message.speaker}: </strong>
+            <span dangerouslySetInnerHTML={{ __html: message.text }} />
+          </p>
         ))}</div>
         {isLoading &&
           <div className="spinner-border" role="status">
