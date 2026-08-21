@@ -67,6 +67,25 @@ a:hover {
   float: left;
 }
 
+.hero_subdesc {
+  font-size: 1.25rem;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .hero_title {
+    font-size: 3rem;
+  }
+
+  .hero_desc {
+    font-size: 1.35rem;
+  }
+
+  .hero_subdesc {
+    font-size: 1rem;
+  }
+}
+
 /* services section css */
 .servicesText .card {
   height: 280px;
