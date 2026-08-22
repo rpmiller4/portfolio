@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="col-lg-8 col-md-8 col-sm-12">
             <p>
               <strong>Source attributions:</strong> Hero and card image assets produced with Midjourney and transformed with Adobe Photoshop. Base CSS layout adapted from a tutorial by Sampurna Chapagain. <br/>
-              <strong>All other content copyright Robert Miller &copy; 2023</strong>
+              <strong>All other content copyright Robert Miller &copy; 2023-2026</strong>
             </p>
           </div>
         </div>
