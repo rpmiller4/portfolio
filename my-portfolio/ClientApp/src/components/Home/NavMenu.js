@@ -1,5 +1,4 @@
 import React, { Component, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import useScroll from '../hooks/useScroll';
 
 
@@ -28,7 +27,7 @@ class NavMenuClass extends Component {
       <header>
         <nav className={`navbar navbar-expand-lg fixed-top navbarScroll navMenu ${navbarDark}`} id="mainNavbar">
           <div className="container">
-              <a className="navbar-brand" href="#">Robert</a>
+              <a className="navbar-brand" href="#home">Robert</a>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
               </button>
@@ -45,9 +44,6 @@ class NavMenuClass extends Component {
                       </li>
                       <li className="nav-item">
                           <a className="nav-link" href="#showcase">Showcase</a>
-                      </li>
-                      <li className="nav-item">
-                          <Link to="gpt-demo" className="nav-link">GPTDemo</Link>
                       </li>
                       <li className="nav-item">
                           <a className="nav-link" href="#contact">Contact</a>
@@ -67,9 +63,9 @@ const NavMenu = () => {
   
   useEffect(() => {
     const handleNavLinkClick = (event) => {
+      const targetId = event.currentTarget.getAttribute('href');
 
-    // Ignore internal routes handled by react-router-dom
-      if (targetId.startsWith("/")) {
+      if (!targetId || !targetId.startsWith('#')) {
         return;
       }
 
@@ -78,8 +74,10 @@ const NavMenu = () => {
       const heightOfNavbar = document.getElementById("mainNavbar").clientHeight;
 
       event.preventDefault();
-      const targetId = event.target.getAttribute('href');
       const targetElement = document.querySelector(targetId);
+      if (!targetElement) {
+        return;
+      }
       const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - heightOfNavbar;
 
       window.scrollTo({
