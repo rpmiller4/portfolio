@@ -42,10 +42,10 @@ const projects = [
         challenge:
             'Personal knowledge arrives as conversations, documents, logs, and recordings, each trapped in a different timeline. The problem is not merely finding an item again, but preserving continuity between them.',
         approach:
-            'GhostNote brings multi-model chat, documents, tags, chronological logs, archive browsing, Whisper transcription, and speech playback into one .NET and Blazor workspace. Routine classification stays local using feature hashing, TF-IDF, logistic regression, and serializable model snapshots.',
+            'GhostNote brings multi-model chat, documents, tags, chronological logs, archive browsing, Whisper transcription, and speech playback into one .NET and Blazor workspace. Routine classification uses a lightweight local text-classification pipeline.',
         result:
             'Using it over time exposed a harder problem: an archive can preserve everything and still fail to identify what is current. That discovery led directly to Loom.',
-        technologies: ['.NET and Blazor', 'OpenAI Whisper', 'TF-IDF and logistic regression', 'Serializable model snapshots']
+        technologies: ['.NET and Blazor', 'OpenAI Whisper', 'Local text-classification pipeline']
     }
 ];
 
