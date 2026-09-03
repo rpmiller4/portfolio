@@ -95,7 +95,7 @@ const Showcase = () => {
                                     <p>{project.result}</p>
                                 </div>
 
-                                <h3>Technologies</h3>
+                                <h3 className="project-technologies-heading">Technologies</h3>
                                 <ul className="project-technologies" aria-label={`${project.name} technologies`}>
                                     {project.technologies.map((technology) => (
                                         <li key={technology}>{technology}</li>

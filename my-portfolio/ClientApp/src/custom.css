@@ -289,6 +289,10 @@ a:hover {
   border-radius: 0 8px 8px 0;
 }
 
+.project-feature .project-technologies-heading {
+  margin-top: 1rem;
+}
+
 .project-technologies {
   display: flex;
   flex-wrap: wrap;
